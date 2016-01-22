@@ -19,6 +19,8 @@ var Button = React.createClass({
     disabled: PropTypes.bool,
     style: Text.propTypes.style,
     styleDisabled: Text.propTypes.style,
+    styleGroup: View.propTypes.style,
+    styleDisabledGroup: View.propTypes.style,
   },
 
   render() {
@@ -62,7 +64,13 @@ var Button = React.createClass({
       case 1:
         return children[0];
       default:
-        return <View style={styles.group}>{children}</View>;
+        var styleGroup = [
+          styles.group,
+          this.props.styleGroup,
+          disabled ? this.props.styleDisabledGroup : null
+        ]
+
+        return <View style={styleGroup}>{children}</View>;
     }
   },
 
